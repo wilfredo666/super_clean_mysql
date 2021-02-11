@@ -1,0 +1,2247 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.4.26
+-- Dumped by pg_dump version 9.4.26
+-- Started on 2021-02-09 11:44:31
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 1 (class 3079 OID 11855)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2288 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 173 (class 1259 OID 16722)
+-- Name: acomodado; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.acomodado (
+    id_acomodado integer NOT NULL,
+    id_cliente integer,
+    cliente character(200),
+    id_usuario integer,
+    id_sucursal integer,
+    id_ot integer,
+    codigo_ot character(200),
+    id_lugar integer,
+    lugar character(200),
+    estado_acomodado character(200),
+    codigo_tikeo character(200),
+    id_prenda integer,
+    codigo_ac character(100),
+    fecha date,
+    hora time with time zone
+);
+
+
+ALTER TABLE public.acomodado OWNER TO postgres;
+
+--
+-- TOC entry 174 (class 1259 OID 16728)
+-- Name: acomodado_id_acomodado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.acomodado_id_acomodado_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.acomodado_id_acomodado_seq OWNER TO postgres;
+
+--
+-- TOC entry 2289 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: acomodado_id_acomodado_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.acomodado_id_acomodado_seq OWNED BY public.acomodado.id_acomodado;
+
+
+--
+-- TOC entry 175 (class 1259 OID 16730)
+-- Name: area_acomodado; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.area_acomodado (
+    id_area_acomodado integer NOT NULL,
+    area_acomodado character(200)
+);
+
+
+ALTER TABLE public.area_acomodado OWNER TO postgres;
+
+--
+-- TOC entry 176 (class 1259 OID 16733)
+-- Name: area_acomodado_id_area_acomodado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.area_acomodado_id_area_acomodado_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.area_acomodado_id_area_acomodado_seq OWNER TO postgres;
+
+--
+-- TOC entry 2290 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: area_acomodado_id_area_acomodado_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.area_acomodado_id_area_acomodado_seq OWNED BY public.area_acomodado.id_area_acomodado;
+
+
+--
+-- TOC entry 177 (class 1259 OID 16735)
+-- Name: cargo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.cargo (
+    id_cargo integer NOT NULL,
+    cargo character(200)
+);
+
+
+ALTER TABLE public.cargo OWNER TO postgres;
+
+--
+-- TOC entry 178 (class 1259 OID 16738)
+-- Name: cargo_id_cargo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.cargo_id_cargo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cargo_id_cargo_seq OWNER TO postgres;
+
+--
+-- TOC entry 2291 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: cargo_id_cargo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.cargo_id_cargo_seq OWNED BY public.cargo.id_cargo;
+
+
+--
+-- TOC entry 179 (class 1259 OID 16740)
+-- Name: carrito_acomodado; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.carrito_acomodado (
+    id_carrito_acomodado integer NOT NULL,
+    id_cliente integer,
+    cliente character(200),
+    id_usuario integer,
+    id_sucursal integer,
+    id_ot integer,
+    codigo_ot character(200),
+    id_lugar integer,
+    lugar character(200),
+    estado_acomodado character(200),
+    codigo_tikeo character(200),
+    id_prenda integer
+);
+
+
+ALTER TABLE public.carrito_acomodado OWNER TO postgres;
+
+--
+-- TOC entry 180 (class 1259 OID 16746)
+-- Name: carrito_acomodado_id_carrito_acomodado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.carrito_acomodado_id_carrito_acomodado_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.carrito_acomodado_id_carrito_acomodado_seq OWNER TO postgres;
+
+--
+-- TOC entry 2292 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: carrito_acomodado_id_carrito_acomodado_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.carrito_acomodado_id_carrito_acomodado_seq OWNED BY public.carrito_acomodado.id_carrito_acomodado;
+
+
+--
+-- TOC entry 181 (class 1259 OID 16748)
+-- Name: carrito_lavado; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.carrito_lavado (
+    id_carrito_lavado integer NOT NULL,
+    id_usuario integer,
+    id_cliente integer,
+    cliente character(200),
+    id_sucursal integer,
+    id_ot integer,
+    codigo_ot character(200),
+    tipo_lavado character(200),
+    estado_lavado character(200),
+    codigo_tikeo character(200),
+    id_prenda integer
+);
+
+
+ALTER TABLE public.carrito_lavado OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 16754)
+-- Name: carrito_lavado_id_carrito_lavado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.carrito_lavado_id_carrito_lavado_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.carrito_lavado_id_carrito_lavado_seq OWNER TO postgres;
+
+--
+-- TOC entry 2293 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: carrito_lavado_id_carrito_lavado_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.carrito_lavado_id_carrito_lavado_seq OWNED BY public.carrito_lavado.id_carrito_lavado;
+
+
+--
+-- TOC entry 183 (class 1259 OID 16756)
+-- Name: carrito_orden_trabajo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.carrito_orden_trabajo (
+    id_carrito_orden_trabajo integer NOT NULL,
+    id_usuario integer,
+    id_sucursal integer,
+    id_cliente integer,
+    cliente character(200),
+    ci_nit character(200),
+    id_prenda integer,
+    id_tipo_lavado integer,
+    cantidad_prenda integer,
+    cantidad_peso double precision,
+    medida_prenda character(10),
+    costo_prenda integer,
+    costo_kilo integer,
+    costo_metro integer,
+    total_servicio integer,
+    pago_servicio integer,
+    saldo_servicio integer,
+    moneda character(200),
+    descuento character(200),
+    tipo_cliente character(200),
+    estado character(200),
+    codigo_ot character(200)
+);
+
+
+ALTER TABLE public.carrito_orden_trabajo OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 16762)
+-- Name: carrito_orden_trabajo_id_carrito_orden_trabajo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.carrito_orden_trabajo_id_carrito_orden_trabajo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.carrito_orden_trabajo_id_carrito_orden_trabajo_seq OWNER TO postgres;
+
+--
+-- TOC entry 2294 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: carrito_orden_trabajo_id_carrito_orden_trabajo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.carrito_orden_trabajo_id_carrito_orden_trabajo_seq OWNED BY public.carrito_orden_trabajo.id_carrito_orden_trabajo;
+
+
+--
+-- TOC entry 185 (class 1259 OID 16764)
+-- Name: carrito_tikeo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.carrito_tikeo (
+    id_carrito_tikeo integer NOT NULL,
+    id_cliente integer,
+    cliente character(200),
+    id_usuario integer,
+    id_sucursal integer,
+    id_ot integer,
+    codigo_ot character(200),
+    codigo_barras character(200),
+    estado_tikeo character(200),
+    id_prenda integer,
+    id_color integer,
+    id_forma integer
+);
+
+
+ALTER TABLE public.carrito_tikeo OWNER TO postgres;
+
+--
+-- TOC entry 186 (class 1259 OID 16770)
+-- Name: carrito_tikeo_id_carrito_tikeo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.carrito_tikeo_id_carrito_tikeo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.carrito_tikeo_id_carrito_tikeo_seq OWNER TO postgres;
+
+--
+-- TOC entry 2295 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: carrito_tikeo_id_carrito_tikeo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.carrito_tikeo_id_carrito_tikeo_seq OWNED BY public.carrito_tikeo.id_carrito_tikeo;
+
+
+--
+-- TOC entry 187 (class 1259 OID 16772)
+-- Name: chofer; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.chofer (
+    id_chofer integer NOT NULL,
+    nombre_completo character(200),
+    direccion character(200),
+    celular integer,
+    telefono integer
+);
+
+
+ALTER TABLE public.chofer OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 16775)
+-- Name: chofer_id_chofer_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.chofer_id_chofer_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.chofer_id_chofer_seq OWNER TO postgres;
+
+--
+-- TOC entry 2296 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: chofer_id_chofer_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.chofer_id_chofer_seq OWNED BY public.chofer.id_chofer;
+
+
+--
+-- TOC entry 189 (class 1259 OID 16777)
+-- Name: cierre_caja; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.cierre_caja (
+    id_cierre_caja integer NOT NULL,
+    fecha_cierre date,
+    id_usuario integer,
+    id_sucursal integer,
+    total_generado integer,
+    hora time without time zone
+);
+
+
+ALTER TABLE public.cierre_caja OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 16780)
+-- Name: cierre_caja_id_cierre_caja_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.cierre_caja_id_cierre_caja_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cierre_caja_id_cierre_caja_seq OWNER TO postgres;
+
+--
+-- TOC entry 2297 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: cierre_caja_id_cierre_caja_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.cierre_caja_id_cierre_caja_seq OWNED BY public.cierre_caja.id_cierre_caja;
+
+
+--
+-- TOC entry 191 (class 1259 OID 16782)
+-- Name: cliente; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.cliente (
+    id_cliente integer NOT NULL,
+    nombres character(200),
+    apellidos character(200),
+    ci_nit character(200),
+    celular integer,
+    telefono integer,
+    email character(300),
+    descuento character(300),
+    sexo character(200),
+    tipo character(100)
+);
+
+
+ALTER TABLE public.cliente OWNER TO postgres;
+
+--
+-- TOC entry 192 (class 1259 OID 16788)
+-- Name: cliente_id_cliente_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.cliente_id_cliente_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cliente_id_cliente_seq OWNER TO postgres;
+
+--
+-- TOC entry 2298 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: cliente_id_cliente_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.cliente_id_cliente_seq OWNED BY public.cliente.id_cliente;
+
+
+--
+-- TOC entry 193 (class 1259 OID 16790)
+-- Name: cobro_lavado_especial; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.cobro_lavado_especial (
+    id_cobro_lavado_especial integer NOT NULL,
+    codigo_lav character(200),
+    total double precision,
+    pago double precision,
+    saldo double precision,
+    id_usuario integer,
+    fecha date,
+    hora time without time zone
+);
+
+
+ALTER TABLE public.cobro_lavado_especial OWNER TO postgres;
+
+--
+-- TOC entry 194 (class 1259 OID 16793)
+-- Name: cobro_lavado_especial_id_cobro_lavado_especial_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.cobro_lavado_especial_id_cobro_lavado_especial_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cobro_lavado_especial_id_cobro_lavado_especial_seq OWNER TO postgres;
+
+--
+-- TOC entry 2299 (class 0 OID 0)
+-- Dependencies: 194
+-- Name: cobro_lavado_especial_id_cobro_lavado_especial_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.cobro_lavado_especial_id_cobro_lavado_especial_seq OWNED BY public.cobro_lavado_especial.id_cobro_lavado_especial;
+
+
+--
+-- TOC entry 224 (class 1259 OID 24588)
+-- Name: color; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.color (
+    id_color integer NOT NULL,
+    nombre_color character(200),
+    cod_color character(200)
+);
+
+
+ALTER TABLE public.color OWNER TO postgres;
+
+--
+-- TOC entry 223 (class 1259 OID 24586)
+-- Name: color_id_color_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.color_id_color_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.color_id_color_seq OWNER TO postgres;
+
+--
+-- TOC entry 2300 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: color_id_color_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.color_id_color_seq OWNED BY public.color.id_color;
+
+
+--
+-- TOC entry 195 (class 1259 OID 16795)
+-- Name: entrega; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.entrega (
+    id_entrega integer NOT NULL,
+    estado character(200),
+    fecha date,
+    hora time without time zone,
+    saldo double precision,
+    codigo_ot character(100),
+    total double precision,
+    pago double precision
+);
+
+
+ALTER TABLE public.entrega OWNER TO postgres;
+
+--
+-- TOC entry 196 (class 1259 OID 16798)
+-- Name: entrega_id_entrega_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.entrega_id_entrega_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.entrega_id_entrega_seq OWNER TO postgres;
+
+--
+-- TOC entry 2301 (class 0 OID 0)
+-- Dependencies: 196
+-- Name: entrega_id_entrega_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.entrega_id_entrega_seq OWNED BY public.entrega.id_entrega;
+
+
+--
+-- TOC entry 222 (class 1259 OID 24578)
+-- Name: forma; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.forma (
+    id_forma integer NOT NULL,
+    forma character(200)
+);
+
+
+ALTER TABLE public.forma OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 24576)
+-- Name: forma_id_forma_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.forma_id_forma_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.forma_id_forma_seq OWNER TO postgres;
+
+--
+-- TOC entry 2302 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: forma_id_forma_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.forma_id_forma_seq OWNED BY public.forma.id_forma;
+
+
+--
+-- TOC entry 197 (class 1259 OID 16800)
+-- Name: lavado; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.lavado (
+    id_lavado integer NOT NULL,
+    id_usuario integer,
+    id_cliente integer,
+    cliente character(200),
+    id_sucursal integer,
+    id_ot integer,
+    codigo_ot character(200),
+    estado_lavado character(200),
+    codigo_tikeo character(200),
+    id_prenda integer,
+    codigo_lavado character(100),
+    fecha date,
+    hora time with time zone,
+    tipo_lavado integer
+);
+
+
+ALTER TABLE public.lavado OWNER TO postgres;
+
+--
+-- TOC entry 198 (class 1259 OID 16806)
+-- Name: lavado_especial; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.lavado_especial (
+    id_lavado_especial integer NOT NULL,
+    cliente character(200),
+    id_cliente integer,
+    prenda character(200),
+    id_prenda integer,
+    medida double precision,
+    total double precision,
+    pago double precision,
+    saldo double precision,
+    id_usuario integer,
+    fecha date,
+    hora time without time zone,
+    codigo character(200),
+    estado character(100)
+);
+
+
+ALTER TABLE public.lavado_especial OWNER TO postgres;
+
+--
+-- TOC entry 199 (class 1259 OID 16812)
+-- Name: lavado_especial_id_lavado_especial_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.lavado_especial_id_lavado_especial_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.lavado_especial_id_lavado_especial_seq OWNER TO postgres;
+
+--
+-- TOC entry 2303 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: lavado_especial_id_lavado_especial_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.lavado_especial_id_lavado_especial_seq OWNED BY public.lavado_especial.id_lavado_especial;
+
+
+--
+-- TOC entry 200 (class 1259 OID 16814)
+-- Name: lavado_id_lavado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.lavado_id_lavado_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.lavado_id_lavado_seq OWNER TO postgres;
+
+--
+-- TOC entry 2304 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: lavado_id_lavado_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.lavado_id_lavado_seq OWNED BY public.lavado.id_lavado;
+
+
+--
+-- TOC entry 201 (class 1259 OID 16816)
+-- Name: moneda; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.moneda (
+    id_moneda integer NOT NULL,
+    moneda character(200)
+);
+
+
+ALTER TABLE public.moneda OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 16819)
+-- Name: moneda_id_moneda_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.moneda_id_moneda_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.moneda_id_moneda_seq OWNER TO postgres;
+
+--
+-- TOC entry 2305 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: moneda_id_moneda_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.moneda_id_moneda_seq OWNED BY public.moneda.id_moneda;
+
+
+--
+-- TOC entry 203 (class 1259 OID 16821)
+-- Name: orden_domicilio; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.orden_domicilio (
+    id_orden_domicilio integer NOT NULL,
+    codigo_ot character(200),
+    id_chofer integer,
+    precio_envio integer,
+    fecha date,
+    hora time without time zone
+);
+
+
+ALTER TABLE public.orden_domicilio OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 16824)
+-- Name: orden_domicilio_id_orden_domicilio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.orden_domicilio_id_orden_domicilio_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.orden_domicilio_id_orden_domicilio_seq OWNER TO postgres;
+
+--
+-- TOC entry 2306 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: orden_domicilio_id_orden_domicilio_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.orden_domicilio_id_orden_domicilio_seq OWNED BY public.orden_domicilio.id_orden_domicilio;
+
+
+--
+-- TOC entry 205 (class 1259 OID 16826)
+-- Name: orden_trabajo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.orden_trabajo (
+    id_orden_trabajo integer NOT NULL,
+    id_usuario integer,
+    id_sucursal integer,
+    id_cliente integer,
+    cliente character(100),
+    ci_nit integer,
+    id_prenda integer,
+    id_tipo_lavado integer,
+    cantidad_prenda integer,
+    cantidad_peso double precision,
+    medida_prenda double precision,
+    costo_prenda double precision,
+    costo_kilo double precision,
+    costo_metro double precision,
+    total_servicio double precision,
+    pago_servicio double precision,
+    saldo_servicio double precision,
+    moneda character(100),
+    descuento double precision,
+    estado character(10),
+    codigo_ot character(100),
+    fecha date,
+    hora time without time zone,
+    tipo_cliente character(10)
+);
+
+
+ALTER TABLE public.orden_trabajo OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 16829)
+-- Name: orden_trabajo_id_orden_trabajo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.orden_trabajo_id_orden_trabajo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.orden_trabajo_id_orden_trabajo_seq OWNER TO postgres;
+
+--
+-- TOC entry 2307 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: orden_trabajo_id_orden_trabajo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.orden_trabajo_id_orden_trabajo_seq OWNED BY public.orden_trabajo.id_orden_trabajo;
+
+
+--
+-- TOC entry 207 (class 1259 OID 16831)
+-- Name: precio_kilo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.precio_kilo (
+    id_precio_kilo integer NOT NULL,
+    precio_kilo character(200),
+    fecha date,
+    hora time without time zone
+);
+
+
+ALTER TABLE public.precio_kilo OWNER TO postgres;
+
+--
+-- TOC entry 208 (class 1259 OID 16834)
+-- Name: precio_kilo_id_precio_kilo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.precio_kilo_id_precio_kilo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.precio_kilo_id_precio_kilo_seq OWNER TO postgres;
+
+--
+-- TOC entry 2308 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: precio_kilo_id_precio_kilo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.precio_kilo_id_precio_kilo_seq OWNED BY public.precio_kilo.id_precio_kilo;
+
+
+--
+-- TOC entry 209 (class 1259 OID 16836)
+-- Name: prenda; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.prenda (
+    id_prenda integer NOT NULL,
+    prenda character(200),
+    portada character(100),
+    precio integer,
+    tipo_prenda integer,
+    moneda integer,
+    id_forma integer,
+    id_color integer
+);
+
+
+ALTER TABLE public.prenda OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 16839)
+-- Name: prenda_id_prenda_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.prenda_id_prenda_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.prenda_id_prenda_seq OWNER TO postgres;
+
+--
+-- TOC entry 2309 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: prenda_id_prenda_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.prenda_id_prenda_seq OWNED BY public.prenda.id_prenda;
+
+
+--
+-- TOC entry 211 (class 1259 OID 16841)
+-- Name: sucursal; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.sucursal (
+    id_sucursal integer NOT NULL,
+    sucursal character(200),
+    encargado character(200),
+    telefono integer,
+    celular integer
+);
+
+
+ALTER TABLE public.sucursal OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 16844)
+-- Name: sucursal_id_sucursal_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.sucursal_id_sucursal_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.sucursal_id_sucursal_seq OWNER TO postgres;
+
+--
+-- TOC entry 2310 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: sucursal_id_sucursal_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.sucursal_id_sucursal_seq OWNED BY public.sucursal.id_sucursal;
+
+
+--
+-- TOC entry 213 (class 1259 OID 16846)
+-- Name: tikeo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.tikeo (
+    id_tikeo integer NOT NULL,
+    id_cliente integer,
+    cliente character(200),
+    id_usuario integer,
+    id_sucursal integer,
+    id_ot integer,
+    codigo_ot character(200),
+    codigo_barras character(200),
+    estado_tikeo character(200),
+    id_prenda integer,
+    codigo_tik character(100),
+    fecha date,
+    hora time with time zone,
+    id_color integer,
+    id_forma integer
+);
+
+
+ALTER TABLE public.tikeo OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 16852)
+-- Name: tikeo_cliente; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.tikeo_cliente (
+    id_tikeo_cliente integer NOT NULL,
+    id_prenda integer,
+    id_cliente integer,
+    cliente character(200),
+    codigo_barras character(200),
+    id_usuario integer,
+    id_sucursal integer,
+    fecha date,
+    hora time without time zone
+);
+
+
+ALTER TABLE public.tikeo_cliente OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 16855)
+-- Name: tikeo_cliente_id_tikeo_cliente_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.tikeo_cliente_id_tikeo_cliente_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tikeo_cliente_id_tikeo_cliente_seq OWNER TO postgres;
+
+--
+-- TOC entry 2311 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: tikeo_cliente_id_tikeo_cliente_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.tikeo_cliente_id_tikeo_cliente_seq OWNED BY public.tikeo_cliente.id_tikeo_cliente;
+
+
+--
+-- TOC entry 216 (class 1259 OID 16857)
+-- Name: tikeo_id_tikeo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.tikeo_id_tikeo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tikeo_id_tikeo_seq OWNER TO postgres;
+
+--
+-- TOC entry 2312 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: tikeo_id_tikeo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.tikeo_id_tikeo_seq OWNED BY public.tikeo.id_tikeo;
+
+
+--
+-- TOC entry 217 (class 1259 OID 16859)
+-- Name: tipo_prenda; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.tipo_prenda (
+    id_tipo_prenda integer NOT NULL,
+    tipo_prenda character(200)
+);
+
+
+ALTER TABLE public.tipo_prenda OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 16862)
+-- Name: tipo_prenda_id_tipo_prenda_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.tipo_prenda_id_tipo_prenda_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tipo_prenda_id_tipo_prenda_seq OWNER TO postgres;
+
+--
+-- TOC entry 2313 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: tipo_prenda_id_tipo_prenda_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.tipo_prenda_id_tipo_prenda_seq OWNED BY public.tipo_prenda.id_tipo_prenda;
+
+
+--
+-- TOC entry 219 (class 1259 OID 16864)
+-- Name: usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE public.usuario (
+    id_usuario integer NOT NULL,
+    email character(300),
+    password character(200),
+    nombres character(200),
+    apellidos character(200),
+    ci bigint,
+    numero integer,
+    cargo integer,
+    sucursal integer
+);
+
+
+ALTER TABLE public.usuario OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 16870)
+-- Name: usuario_id_usuario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.usuario_id_usuario_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.usuario_id_usuario_seq OWNER TO postgres;
+
+--
+-- TOC entry 2314 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: usuario_id_usuario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.usuario_id_usuario_seq OWNED BY public.usuario.id_usuario;
+
+
+--
+-- TOC entry 2041 (class 2604 OID 16872)
+-- Name: id_acomodado; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.acomodado ALTER COLUMN id_acomodado SET DEFAULT nextval('public.acomodado_id_acomodado_seq'::regclass);
+
+
+--
+-- TOC entry 2042 (class 2604 OID 16873)
+-- Name: id_area_acomodado; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.area_acomodado ALTER COLUMN id_area_acomodado SET DEFAULT nextval('public.area_acomodado_id_area_acomodado_seq'::regclass);
+
+
+--
+-- TOC entry 2043 (class 2604 OID 16874)
+-- Name: id_cargo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cargo ALTER COLUMN id_cargo SET DEFAULT nextval('public.cargo_id_cargo_seq'::regclass);
+
+
+--
+-- TOC entry 2044 (class 2604 OID 16875)
+-- Name: id_carrito_acomodado; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.carrito_acomodado ALTER COLUMN id_carrito_acomodado SET DEFAULT nextval('public.carrito_acomodado_id_carrito_acomodado_seq'::regclass);
+
+
+--
+-- TOC entry 2045 (class 2604 OID 16876)
+-- Name: id_carrito_lavado; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.carrito_lavado ALTER COLUMN id_carrito_lavado SET DEFAULT nextval('public.carrito_lavado_id_carrito_lavado_seq'::regclass);
+
+
+--
+-- TOC entry 2046 (class 2604 OID 16877)
+-- Name: id_carrito_orden_trabajo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.carrito_orden_trabajo ALTER COLUMN id_carrito_orden_trabajo SET DEFAULT nextval('public.carrito_orden_trabajo_id_carrito_orden_trabajo_seq'::regclass);
+
+
+--
+-- TOC entry 2047 (class 2604 OID 16878)
+-- Name: id_carrito_tikeo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.carrito_tikeo ALTER COLUMN id_carrito_tikeo SET DEFAULT nextval('public.carrito_tikeo_id_carrito_tikeo_seq'::regclass);
+
+
+--
+-- TOC entry 2048 (class 2604 OID 16879)
+-- Name: id_chofer; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chofer ALTER COLUMN id_chofer SET DEFAULT nextval('public.chofer_id_chofer_seq'::regclass);
+
+
+--
+-- TOC entry 2049 (class 2604 OID 16880)
+-- Name: id_cierre_caja; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cierre_caja ALTER COLUMN id_cierre_caja SET DEFAULT nextval('public.cierre_caja_id_cierre_caja_seq'::regclass);
+
+
+--
+-- TOC entry 2050 (class 2604 OID 16881)
+-- Name: id_cliente; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cliente ALTER COLUMN id_cliente SET DEFAULT nextval('public.cliente_id_cliente_seq'::regclass);
+
+
+--
+-- TOC entry 2051 (class 2604 OID 16882)
+-- Name: id_cobro_lavado_especial; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cobro_lavado_especial ALTER COLUMN id_cobro_lavado_especial SET DEFAULT nextval('public.cobro_lavado_especial_id_cobro_lavado_especial_seq'::regclass);
+
+
+--
+-- TOC entry 2066 (class 2604 OID 24591)
+-- Name: id_color; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.color ALTER COLUMN id_color SET DEFAULT nextval('public.color_id_color_seq'::regclass);
+
+
+--
+-- TOC entry 2052 (class 2604 OID 16883)
+-- Name: id_entrega; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.entrega ALTER COLUMN id_entrega SET DEFAULT nextval('public.entrega_id_entrega_seq'::regclass);
+
+
+--
+-- TOC entry 2065 (class 2604 OID 24581)
+-- Name: id_forma; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.forma ALTER COLUMN id_forma SET DEFAULT nextval('public.forma_id_forma_seq'::regclass);
+
+
+--
+-- TOC entry 2053 (class 2604 OID 16884)
+-- Name: id_lavado; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lavado ALTER COLUMN id_lavado SET DEFAULT nextval('public.lavado_id_lavado_seq'::regclass);
+
+
+--
+-- TOC entry 2054 (class 2604 OID 16885)
+-- Name: id_lavado_especial; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lavado_especial ALTER COLUMN id_lavado_especial SET DEFAULT nextval('public.lavado_especial_id_lavado_especial_seq'::regclass);
+
+
+--
+-- TOC entry 2055 (class 2604 OID 16886)
+-- Name: id_moneda; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.moneda ALTER COLUMN id_moneda SET DEFAULT nextval('public.moneda_id_moneda_seq'::regclass);
+
+
+--
+-- TOC entry 2056 (class 2604 OID 16887)
+-- Name: id_orden_domicilio; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orden_domicilio ALTER COLUMN id_orden_domicilio SET DEFAULT nextval('public.orden_domicilio_id_orden_domicilio_seq'::regclass);
+
+
+--
+-- TOC entry 2057 (class 2604 OID 16888)
+-- Name: id_orden_trabajo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orden_trabajo ALTER COLUMN id_orden_trabajo SET DEFAULT nextval('public.orden_trabajo_id_orden_trabajo_seq'::regclass);
+
+
+--
+-- TOC entry 2058 (class 2604 OID 16889)
+-- Name: id_precio_kilo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.precio_kilo ALTER COLUMN id_precio_kilo SET DEFAULT nextval('public.precio_kilo_id_precio_kilo_seq'::regclass);
+
+
+--
+-- TOC entry 2059 (class 2604 OID 16890)
+-- Name: id_prenda; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.prenda ALTER COLUMN id_prenda SET DEFAULT nextval('public.prenda_id_prenda_seq'::regclass);
+
+
+--
+-- TOC entry 2060 (class 2604 OID 16891)
+-- Name: id_sucursal; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.sucursal ALTER COLUMN id_sucursal SET DEFAULT nextval('public.sucursal_id_sucursal_seq'::regclass);
+
+
+--
+-- TOC entry 2061 (class 2604 OID 16892)
+-- Name: id_tikeo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tikeo ALTER COLUMN id_tikeo SET DEFAULT nextval('public.tikeo_id_tikeo_seq'::regclass);
+
+
+--
+-- TOC entry 2062 (class 2604 OID 16893)
+-- Name: id_tikeo_cliente; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tikeo_cliente ALTER COLUMN id_tikeo_cliente SET DEFAULT nextval('public.tikeo_cliente_id_tikeo_cliente_seq'::regclass);
+
+
+--
+-- TOC entry 2063 (class 2604 OID 16894)
+-- Name: id_tipo_prenda; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tipo_prenda ALTER COLUMN id_tipo_prenda SET DEFAULT nextval('public.tipo_prenda_id_tipo_prenda_seq'::regclass);
+
+
+--
+-- TOC entry 2064 (class 2604 OID 16895)
+-- Name: id_usuario; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario ALTER COLUMN id_usuario SET DEFAULT nextval('public.usuario_id_usuario_seq'::regclass);
+
+
+--
+-- TOC entry 2228 (class 0 OID 16722)
+-- Dependencies: 173
+-- Data for Name: acomodado; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.acomodado (id_acomodado, id_cliente, cliente, id_usuario, id_sucursal, id_ot, codigo_ot, id_lugar, lugar, estado_acomodado, codigo_tikeo, id_prenda, codigo_ac, fecha, hora) FROM stdin;
+124	2	LEONORA VICTORIA AYAVIRI CARDENAS                                                                                                                                                                       	1	1	140	OT20200311110304                                                                                                                                                                                        	2	Mueble                                                                                                                                                                                                  	INACTIVO                                                                                                                                                                                                	00000001                                                                                                                                                                                                	1	AC20200311114325                                                                                    	2020-03-11	11:43:25+00
+125	3	RICARDO MARCO MALDONADO PEREZ                                                                                                                                                                           	1	1	144	OT20200316100315                                                                                                                                                                                        	1	Colgadores                                                                                                                                                                                              	INACTIVO                                                                                                                                                                                                	00000001                                                                                                                                                                                                	1	AC20200316114056                                                                                    	2020-03-16	11:40:56+00
+126	4	FACUNDO VICENTE ALBARES MEDINA                                                                                                                                                                          	1	1	145	OT20200316150304                                                                                                                                                                                        	3	Ropero                                                                                                                                                                                                  	INACTIVO                                                                                                                                                                                                	00000001                                                                                                                                                                                                	1	AC20200316155649                                                                                    	2020-03-16	15:56:49+00
+127	7	JOSE CHOQUE VALDERRAMA                                                                                                                                                                                  	1	1	148	OT20200317140313                                                                                                                                                                                        	2	Mueble                                                                                                                                                                                                  	ACTIVO                                                                                                                                                                                                  	00000005                                                                                                                                                                                                	26	AC20200317145641                                                                                    	2020-03-17	14:56:41+00
+\.
+
+
+--
+-- TOC entry 2315 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: acomodado_id_acomodado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.acomodado_id_acomodado_seq', 127, true);
+
+
+--
+-- TOC entry 2230 (class 0 OID 16730)
+-- Dependencies: 175
+-- Data for Name: area_acomodado; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.area_acomodado (id_area_acomodado, area_acomodado) FROM stdin;
+1	Colgadores                                                                                                                                                                                              
+2	Mueble                                                                                                                                                                                                  
+3	Ropero                                                                                                                                                                                                  
+\.
+
+
+--
+-- TOC entry 2316 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: area_acomodado_id_area_acomodado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.area_acomodado_id_area_acomodado_seq', 3, true);
+
+
+--
+-- TOC entry 2232 (class 0 OID 16735)
+-- Dependencies: 177
+-- Data for Name: cargo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.cargo (id_cargo, cargo) FROM stdin;
+1	administrador                                                                                                                                                                                           
+2	recepcionista                                                                                                                                                                                           
+3	planchador                                                                                                                                                                                              
+\.
+
+
+--
+-- TOC entry 2317 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: cargo_id_cargo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.cargo_id_cargo_seq', 3, true);
+
+
+--
+-- TOC entry 2234 (class 0 OID 16740)
+-- Dependencies: 179
+-- Data for Name: carrito_acomodado; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.carrito_acomodado (id_carrito_acomodado, id_cliente, cliente, id_usuario, id_sucursal, id_ot, codigo_ot, id_lugar, lugar, estado_acomodado, codigo_tikeo, id_prenda) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2318 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: carrito_acomodado_id_carrito_acomodado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.carrito_acomodado_id_carrito_acomodado_seq', 443, true);
+
+
+--
+-- TOC entry 2236 (class 0 OID 16748)
+-- Dependencies: 181
+-- Data for Name: carrito_lavado; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.carrito_lavado (id_carrito_lavado, id_usuario, id_cliente, cliente, id_sucursal, id_ot, codigo_ot, tipo_lavado, estado_lavado, codigo_tikeo, id_prenda) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2319 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: carrito_lavado_id_carrito_lavado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.carrito_lavado_id_carrito_lavado_seq', 863, true);
+
+
+--
+-- TOC entry 2238 (class 0 OID 16756)
+-- Dependencies: 183
+-- Data for Name: carrito_orden_trabajo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.carrito_orden_trabajo (id_carrito_orden_trabajo, id_usuario, id_sucursal, id_cliente, cliente, ci_nit, id_prenda, id_tipo_lavado, cantidad_prenda, cantidad_peso, medida_prenda, costo_prenda, costo_kilo, costo_metro, total_servicio, pago_servicio, saldo_servicio, moneda, descuento, tipo_cliente, estado, codigo_ot) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2320 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: carrito_orden_trabajo_id_carrito_orden_trabajo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.carrito_orden_trabajo_id_carrito_orden_trabajo_seq', 455, true);
+
+
+--
+-- TOC entry 2240 (class 0 OID 16764)
+-- Dependencies: 185
+-- Data for Name: carrito_tikeo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.carrito_tikeo (id_carrito_tikeo, id_cliente, cliente, id_usuario, id_sucursal, id_ot, codigo_ot, codigo_barras, estado_tikeo, id_prenda, id_color, id_forma) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2321 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: carrito_tikeo_id_carrito_tikeo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.carrito_tikeo_id_carrito_tikeo_seq', 661, true);
+
+
+--
+-- TOC entry 2242 (class 0 OID 16772)
+-- Dependencies: 187
+-- Data for Name: chofer; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.chofer (id_chofer, nombre_completo, direccion, celular, telefono) FROM stdin;
+1	Ramiro Carlos Belzema Urquides                                                                                                                                                                          	av. juan de la rosa entre america oeste #456                                                                                                                                                            	77942589	44287712
+2	Edgar Montaño Quispe                                                                                                                                                                                    	av. ricardo maure y c/ nicaragua velez                                                                                                                                                                  	77894523	44879963
+\.
+
+
+--
+-- TOC entry 2322 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: chofer_id_chofer_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.chofer_id_chofer_seq', 2, true);
+
+
+--
+-- TOC entry 2244 (class 0 OID 16777)
+-- Dependencies: 189
+-- Data for Name: cierre_caja; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.cierre_caja (id_cierre_caja, fecha_cierre, id_usuario, id_sucursal, total_generado, hora) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2323 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: cierre_caja_id_cierre_caja_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.cierre_caja_id_cierre_caja_seq', 12, true);
+
+
+--
+-- TOC entry 2246 (class 0 OID 16782)
+-- Dependencies: 191
+-- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.cliente (id_cliente, nombres, apellidos, ci_nit, celular, telefono, email, descuento, sexo, tipo) FROM stdin;
+7	JOSE                                                                                                                                                                                                    	CHOQUE VALDERRAMA                                                                                                                                                                                       	8046687                                                                                                                                                                                                 	77942589	4485663	jose@gmail.com                                                                                                                                                                                                                                                                                              	3                                                                                                                                                                                                                                                                                                           	MASCULINO                                                                                                                                                                                               	Vip                                                                                                 
+3	RICARDO MARCO                                                                                                                                                                                           	MALDONADO PEREZ                                                                                                                                                                                         	8046687                                                                                                                                                                                                 	779028475	4458979	arielbrayan22@gmail.com                                                                                                                                                                                                                                                                                     	5                                                                                                                                                                                                                                                                                                           	Seleccione                                                                                                                                                                                              	Normal                                                                                              
+2	LEONORA VICTORIA                                                                                                                                                                                        	AYAVIRI CARDENAS                                                                                                                                                                                        	80565547                                                                                                                                                                                                	779025874	4485236	leonora@gmail.com                                                                                                                                                                                                                                                                                           	0                                                                                                                                                                                                                                                                                                           	Seleccione                                                                                                                                                                                              	Normal                                                                                              
+4	FACUNDO VICENTE                                                                                                                                                                                         	ALBARES MEDINA                                                                                                                                                                                          	80475521                                                                                                                                                                                                	77642763	4825513	facundo@gmail.com                                                                                                                                                                                                                                                                                           	0                                                                                                                                                                                                                                                                                                           	Seleccione                                                                                                                                                                                              	Vip                                                                                                 
+6	ENRRIQUE OLMEDO                                                                                                                                                                                         	GUILLERMES GALDES                                                                                                                                                                                       	1234567891                                                                                                                                                                                              	77415289	4823375	enrrique@gmail.com                                                                                                                                                                                                                                                                                          	5                                                                                                                                                                                                                                                                                                           	Seleccione                                                                                                                                                                                              	Normal                                                                                              
+1	ADRIANO SERGIO                                                                                                                                                                                          	CORREA MARTINES                                                                                                                                                                                         	804778965                                                                                                                                                                                               	77902769	4875569	adriano@gmail.com                                                                                                                                                                                                                                                                                           	3                                                                                                                                                                                                                                                                                                           	Seleccione                                                                                                                                                                                              	Normal                                                                                              
+5	JOSE MANUEL                                                                                                                                                                                             	GISBERT MALAGA                                                                                                                                                                                          	7145778601                                                                                                                                                                                              	77902769	44856321	juanmanuel@gmail.com                                                                                                                                                                                                                                                                                        	3                                                                                                                                                                                                                                                                                                           	Seleccione                                                                                                                                                                                              	Normal                                                                                              
+\.
+
+
+--
+-- TOC entry 2324 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: cliente_id_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.cliente_id_cliente_seq', 7, true);
+
+
+--
+-- TOC entry 2248 (class 0 OID 16790)
+-- Dependencies: 193
+-- Data for Name: cobro_lavado_especial; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.cobro_lavado_especial (id_cobro_lavado_especial, codigo_lav, total, pago, saldo, id_usuario, fecha, hora) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2325 (class 0 OID 0)
+-- Dependencies: 194
+-- Name: cobro_lavado_especial_id_cobro_lavado_especial_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.cobro_lavado_especial_id_cobro_lavado_especial_seq', 10, true);
+
+
+--
+-- TOC entry 2279 (class 0 OID 24588)
+-- Dependencies: 224
+-- Data for Name: color; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.color (id_color, nombre_color, cod_color) FROM stdin;
+4	amarillo                                                                                                                                                                                                	#ffff00                                                                                                                                                                                                 
+5	Rojo Carmin                                                                                                                                                                                             	#a20923                                                                                                                                                                                                 
+8	Azul                                                                                                                                                                                                    	#0000ff                                                                                                                                                                                                 
+9	Blanco                                                                                                                                                                                                  	#ffffff                                                                                                                                                                                                 
+\.
+
+
+--
+-- TOC entry 2326 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: color_id_color_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.color_id_color_seq', 9, true);
+
+
+--
+-- TOC entry 2250 (class 0 OID 16795)
+-- Dependencies: 195
+-- Data for Name: entrega; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.entrega (id_entrega, estado, fecha, hora, saldo, codigo_ot, total, pago) FROM stdin;
+32	FINALIZADO                                                                                                                                                                                              	2020-03-11	11:44:08	0	OT20200311110304                                                                                    	-35	-35
+33	FINALIZADO                                                                                                                                                                                              	2020-03-16	11:41:50	0	OT20200316100315                                                                                    	-36	-36
+34	FINALIZADO                                                                                                                                                                                              	2020-03-16	16:42:17	0	OT20200316150304                                                                                    	-20	-20
+\.
+
+
+--
+-- TOC entry 2327 (class 0 OID 0)
+-- Dependencies: 196
+-- Name: entrega_id_entrega_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.entrega_id_entrega_seq', 34, true);
+
+
+--
+-- TOC entry 2277 (class 0 OID 24578)
+-- Dependencies: 222
+-- Data for Name: forma; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.forma (id_forma, forma) FROM stdin;
+2	Redonda                                                                                                                                                                                                 
+3	Cuadrada                                                                                                                                                                                                
+6	triangular                                                                                                                                                                                              
+\.
+
+
+--
+-- TOC entry 2328 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: forma_id_forma_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.forma_id_forma_seq', 6, true);
+
+
+--
+-- TOC entry 2252 (class 0 OID 16800)
+-- Dependencies: 197
+-- Data for Name: lavado; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.lavado (id_lavado, id_usuario, id_cliente, cliente, id_sucursal, id_ot, codigo_ot, estado_lavado, codigo_tikeo, id_prenda, codigo_lavado, fecha, hora, tipo_lavado) FROM stdin;
+185	1	4	FACUNDO VICENTE ALBARES MEDINA                                                                                                                                                                          	1	145	OT20200316150304                                                                                                                                                                                        	INACTIVO                                                                                                                                                                                                	00000001                                                                                                                                                                                                	1	L16032020155627                                                                                     	2020-03-16	15:56:27+00	2
+183	1	2	LEONORA VICTORIA AYAVIRI CARDENAS                                                                                                                                                                       	1	140	OT20200311110304                                                                                                                                                                                        	INACTIVO                                                                                                                                                                                                	00000001                                                                                                                                                                                                	1	L11032020113659                                                                                     	2020-03-11	11:36:59+00	2
+184	1	3	RICARDO MARCO MALDONADO PEREZ                                                                                                                                                                           	1	144	OT20200316100315                                                                                                                                                                                        	INACTIVO                                                                                                                                                                                                	00000001                                                                                                                                                                                                	1	L16032020114022                                                                                     	2020-03-16	11:40:22+00	1
+186	1	7	JOSE CHOQUE VALDERRAMA                                                                                                                                                                                  	1	148	OT20200317140313                                                                                                                                                                                        	INACTIVO                                                                                                                                                                                                	00000005                                                                                                                                                                                                	26	L17032020145625                                                                                     	2020-03-17	14:56:25+00	2
+\.
+
+
+--
+-- TOC entry 2253 (class 0 OID 16806)
+-- Dependencies: 198
+-- Data for Name: lavado_especial; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.lavado_especial (id_lavado_especial, cliente, id_cliente, prenda, id_prenda, medida, total, pago, saldo, id_usuario, fecha, hora, codigo, estado) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2329 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: lavado_especial_id_lavado_especial_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.lavado_especial_id_lavado_especial_seq', 22, true);
+
+
+--
+-- TOC entry 2330 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: lavado_id_lavado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.lavado_id_lavado_seq', 186, true);
+
+
+--
+-- TOC entry 2256 (class 0 OID 16816)
+-- Dependencies: 201
+-- Data for Name: moneda; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.moneda (id_moneda, moneda) FROM stdin;
+1	BOLIVIANOS                                                                                                                                                                                              
+\.
+
+
+--
+-- TOC entry 2331 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: moneda_id_moneda_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.moneda_id_moneda_seq', 1, true);
+
+
+--
+-- TOC entry 2258 (class 0 OID 16821)
+-- Dependencies: 203
+-- Data for Name: orden_domicilio; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.orden_domicilio (id_orden_domicilio, codigo_ot, id_chofer, precio_envio, fecha, hora) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2332 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: orden_domicilio_id_orden_domicilio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.orden_domicilio_id_orden_domicilio_seq', 11, true);
+
+
+--
+-- TOC entry 2260 (class 0 OID 16826)
+-- Dependencies: 205
+-- Data for Name: orden_trabajo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.orden_trabajo (id_orden_trabajo, id_usuario, id_sucursal, id_cliente, cliente, ci_nit, id_prenda, id_tipo_lavado, cantidad_prenda, cantidad_peso, medida_prenda, costo_prenda, costo_kilo, costo_metro, total_servicio, pago_servicio, saldo_servicio, moneda, descuento, estado, codigo_ot, fecha, hora, tipo_cliente) FROM stdin;
+145	1	1	4	FACUNDO VICENTE ALBARES MEDINA                                                                      	80475521	1	1	1	0	0	15	0	0	15	35	20	1                                                                                                   	0	ENTREGADO 	OT20200316150304                                                                                    	2020-03-16	15:53:04	Vip       
+144	1	1	3	RICARDO MARCO MALDONADO PEREZ                                                                       	8046687	1	1	1	0	0	15	0	0	14	50	36	1                                                                                                   	5	ENTREGADO 	OT20200316100315                                                                                    	2020-03-16	10:13:15	Normal    
+140	1	1	2	LEONORA VICTORIA AYAVIRI CARDENAS                                                                   	80565547	1	1	1	0	0	15	0	0	15	50	35	1                                                                                                   	0	ENTREGADO 	OT20200311110304                                                                                    	2020-03-11	11:16:04	Normal    
+148	1	1	7	JOSE CHOQUE VALDERRAMA                                                                              	8046687	26	1	1	0	0	18	0	0	17	80	63	1                                                                                                   	3	ACOMODADO 	OT20200317140313                                                                                    	2020-03-17	14:53:13	Vip       
+\.
+
+
+--
+-- TOC entry 2333 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: orden_trabajo_id_orden_trabajo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.orden_trabajo_id_orden_trabajo_seq', 148, true);
+
+
+--
+-- TOC entry 2262 (class 0 OID 16831)
+-- Dependencies: 207
+-- Data for Name: precio_kilo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.precio_kilo (id_precio_kilo, precio_kilo, fecha, hora) FROM stdin;
+1	15                                                                                                                                                                                                      	2019-01-23	15:55:48
+\.
+
+
+--
+-- TOC entry 2334 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: precio_kilo_id_precio_kilo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.precio_kilo_id_precio_kilo_seq', 2, true);
+
+
+--
+-- TOC entry 2264 (class 0 OID 16836)
+-- Dependencies: 209
+-- Data for Name: prenda; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.prenda (id_prenda, prenda, portada, precio, tipo_prenda, moneda, id_forma, id_color) FROM stdin;
+1	POLERA                                                                                                                                                                                                  	d-1543958613.jpg                                                                                    	15	1	1	3	9
+12	Pantalon                                                                                                                                                                                                	d-1564070676.jpg                                                                                    	12	1	1	\N	\N
+6	Alfombra                                                                                                                                                                                                	icono_prenda.png                                                                                    	16	1	1	\N	\N
+7	Frazada Delgada                                                                                                                                                                                         	icono_prenda.png                                                                                    	22	1	1	\N	\N
+3	ALFOMBRA                                                                                                                                                                                                	d-1543958659.jpg                                                                                    	15	2	1	3	4
+8	kilo sin planchar                                                                                                                                                                                       	icono_prenda.png                                                                                    	10	1	1	\N	\N
+9	Chaleco de Pluma                                                                                                                                                                                        	icono_prenda.png                                                                                    	15	1	1	\N	\N
+5	Saco                                                                                                                                                                                                    	d-1564070622.jpg                                                                                    	21	1	1	\N	\N
+11	Chamarra Gruesa                                                                                                                                                                                         	icono_prenda.png                                                                                    	20	1	1	\N	\N
+13	Vestido Sencillo                                                                                                                                                                                        	d-1564070934.jpg                                                                                    	18	1	1	\N	\N
+22	Vestido Fiesta Delicado 3                                                                                                                                                                               	d-1564071154.jpg                                                                                    	50	1	1	\N	\N
+2	CORTINA                                                                                                                                                                                                 	d-1543958630.jpg                                                                                    	18	2	1	3	9
+14	Chamarra Cuerina                                                                                                                                                                                        	icono_prenda.png                                                                                    	35	1	1	\N	\N
+15	Kilo Planchado                                                                                                                                                                                          	icono_prenda.png                                                                                    	14	1	1	\N	\N
+16	Cortina                                                                                                                                                                                                 	icono_prenda.png                                                                                    	10	1	1	\N	\N
+17	Terno-Traje                                                                                                                                                                                             	icono_prenda.png                                                                                    	33	1	1	\N	\N
+18	Chompa Gruesa                                                                                                                                                                                           	icono_prenda.png                                                                                    	17	1	1	\N	\N
+19	Blusa Sencilla                                                                                                                                                                                          	icono_prenda.png                                                                                    	12	1	1	\N	\N
+20	Estores Delgado                                                                                                                                                                                         	icono_prenda.png                                                                                    	9	1	1	\N	\N
+21	Abrigo o Impermeable                                                                                                                                                                                    	icono_prenda.png                                                                                    	33	1	1	\N	\N
+10	Camisa Seda                                                                                                                                                                                             	d-1564070522.jpg                                                                                    	15	1	1	\N	\N
+24	Corbata                                                                                                                                                                                                 	icono_prenda.png                                                                                    	8	1	1	\N	\N
+25	OTRO:                                                                                                                                                                                                   	icono_prenda.png                                                                                    	0	1	1	\N	\N
+26	Abrigo ninio                                                                                                                                                                                            	icono_prenda.png                                                                                    	18	1	1	\N	\N
+27	Bandera 2 a 3 mtr                                                                                                                                                                                       	icono_prenda.png                                                                                    	30	1	1	\N	\N
+28	Blusa de seda                                                                                                                                                                                           	icono_prenda.png                                                                                    	16	1	1	\N	\N
+30	Chaleco de terno                                                                                                                                                                                        	icono_prenda.png                                                                                    	10	1	1	\N	\N
+31	Chamarra Cuero                                                                                                                                                                                          	icono_prenda.png                                                                                    	100	1	1	\N	\N
+32	Chamarra Delgada                                                                                                                                                                                        	icono_prenda.png                                                                                    	17	1	1	\N	\N
+33	Chompa Delgada                                                                                                                                                                                          	icono_prenda.png                                                                                    	15	1	1	\N	\N
+34	Edredon 1.5 plaza                                                                                                                                                                                       	icono_prenda.png                                                                                    	30	1	1	\N	\N
+35	Edredon 2 plaza                                                                                                                                                                                         	icono_prenda.png                                                                                    	32	1	1	\N	\N
+36	Edredon 2.5 pla. o pluma                                                                                                                                                                                	icono_prenda.png                                                                                    	40	1	1	\N	\N
+37	Estandarte                                                                                                                                                                                              	icono_prenda.png                                                                                    	40	1	1	\N	\N
+38	Falda plizada                                                                                                                                                                                           	icono_prenda.png                                                                                    	17	1	1	\N	\N
+39	Falda Sencilla                                                                                                                                                                                          	icono_prenda.png                                                                                    	12	1	1	\N	\N
+40	Forro living o auto                                                                                                                                                                                     	icono_prenda.png                                                                                    	15	1	1	\N	\N
+41	Forro de Cama                                                                                                                                                                                           	icono_prenda.png                                                                                    	22	1	1	\N	\N
+42	Frazada Gruesa                                                                                                                                                                                          	icono_prenda.png                                                                                    	30	1	1	\N	\N
+43	Juego de Sabanas                                                                                                                                                                                        	icono_prenda.png                                                                                    	15	1	1	\N	\N
+44	Mantel con bordado                                                                                                                                                                                      	icono_prenda.png                                                                                    	30	1	1	\N	\N
+29	Camisa Normal                                                                                                                                                                                           	d-1564070504.jpg                                                                                    	8	1	1	\N	\N
+23	Traje Dama 2 Pzs                                                                                                                                                                                        	icono_prenda.png                                                                                    	33	1	1	\N	\N
+46	Munieco Peluche Pequenio                                                                                                                                                                                	icono_prenda.png                                                                                    	8	1	1	\N	\N
+47	Munieco Peluche Mediano                                                                                                                                                                                 	icono_prenda.png                                                                                    	25	1	1	\N	\N
+48	Munieco Peluche Grande                                                                                                                                                                                  	icono_prenda.png                                                                                    	40	1	1	\N	\N
+49	Overol de trabajo                                                                                                                                                                                       	icono_prenda.png                                                                                    	30	1	1	\N	\N
+50	Pantalon Corto                                                                                                                                                                                          	icono_prenda.png                                                                                    	8	1	1	\N	\N
+51	Parka                                                                                                                                                                                                   	icono_prenda.png                                                                                    	25	1	1	\N	\N
+4	Polera                                                                                                                                                                                                  	d-1564070589.jpg                                                                                    	8	1	1	\N	\N
+53	Pollera Corta                                                                                                                                                                                           	icono_prenda.png                                                                                    	17	1	1	\N	\N
+54	Pollera Larga                                                                                                                                                                                           	icono_prenda.png                                                                                    	22	1	1	\N	\N
+55	Poncho de lana                                                                                                                                                                                          	icono_prenda.png                                                                                    	20	1	1	\N	\N
+63	Vestido de ninia                                                                                                                                                                                        	d-1564070911.jpg                                                                                    	16	1	1	\N	\N
+57	Sleeping                                                                                                                                                                                                	icono_prenda.png                                                                                    	35	1	1	\N	\N
+58	Traje Dama 3 Pzs                                                                                                                                                                                        	icono_prenda.png                                                                                    	40	1	1	\N	\N
+59	Traje Caporal                                                                                                                                                                                           	icono_prenda.png                                                                                    	40	1	1	\N	\N
+62	Vestido Fiesta Delicado 2                                                                                                                                                                               	d-1564071182.jpg                                                                                    	40	1	1	\N	\N
+60	Vestido con Saco                                                                                                                                                                                        	d-1564071261.jpg                                                                                    	38	1	1	\N	\N
+61	Vestido Fiesta Delicado 1                                                                                                                                                                               	d-1564071063.jpg                                                                                    	35	1	1	\N	\N
+52	Poleron o Canguro                                                                                                                                                                                       	d-1564070560.jpg                                                                                    	15	1	1	\N	\N
+64	Alfombra Delgada                                                                                                                                                                                        	d-1564070468.jpg                                                                                    	14	1	1	\N	\N
+56	Sacon Grueso                                                                                                                                                                                            	d-1564070647.jpg                                                                                    	27	1	1	\N	\N
+45	Mantilla delicada                                                                                                                                                                                       	icono_prenda.png                                                                                    	20	1	1	\N	\N
+\.
+
+
+--
+-- TOC entry 2335 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: prenda_id_prenda_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.prenda_id_prenda_seq', 4, true);
+
+
+--
+-- TOC entry 2266 (class 0 OID 16841)
+-- Dependencies: 211
+-- Data for Name: sucursal; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.sucursal (id_sucursal, sucursal, encargado, telefono, celular) FROM stdin;
+1	SUPER CLEAN 2                                                                                                                                                                                           	LITZI VELASQUES                                                                                                                                                                                         	4589789	77902478
+\.
+
+
+--
+-- TOC entry 2336 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: sucursal_id_sucursal_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.sucursal_id_sucursal_seq', 2, true);
+
+
+--
+-- TOC entry 2268 (class 0 OID 16846)
+-- Dependencies: 213
+-- Data for Name: tikeo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.tikeo (id_tikeo, id_cliente, cliente, id_usuario, id_sucursal, id_ot, codigo_ot, codigo_barras, estado_tikeo, id_prenda, codigo_tik, fecha, hora, id_color, id_forma) FROM stdin;
+153	2	LEONORA VICTORIA AYAVIRI CARDENAS                                                                                                                                                                       	1	1	142	OT20200311110357                                                                                                                                                                                        	00000002                                                                                                                                                                                                	ACTIVO                                                                                                                                                                                                  	4	T20200313111700                                                                                     	2020-03-13	11:17:00+00	5	2
+152	2	LEONORA VICTORIA AYAVIRI CARDENAS                                                                                                                                                                       	1	1	141	OT20200311110357                                                                                                                                                                                        	00000001                                                                                                                                                                                                	INACTIVO                                                                                                                                                                                                	1	T20200313111700                                                                                     	2020-03-13	11:17:00+00	4	3
+154	3	RICARDO MARCO MALDONADO PEREZ                                                                                                                                                                           	1	1	144	OT20200316100315                                                                                                                                                                                        	00000001                                                                                                                                                                                                	INACTIVO                                                                                                                                                                                                	1	T20200316113716                                                                                     	2020-03-16	11:37:16+00	4	3
+155	4	FACUNDO VICENTE ALBARES MEDINA                                                                                                                                                                          	1	1	145	OT20200316150304                                                                                                                                                                                        	00000001                                                                                                                                                                                                	INACTIVO                                                                                                                                                                                                	1	T20200316155457                                                                                     	2020-03-16	15:54:57+00	4	3
+156	7	JOSE CHOQUE VALDERRAMA                                                                                                                                                                                  	1	1	148	OT20200317140313                                                                                                                                                                                        	00000005                                                                                                                                                                                                	INACTIVO                                                                                                                                                                                                	26	T20200317145603                                                                                     	2020-03-17	14:56:03+00	5	2
+\.
+
+
+--
+-- TOC entry 2269 (class 0 OID 16852)
+-- Dependencies: 214
+-- Data for Name: tikeo_cliente; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.tikeo_cliente (id_tikeo_cliente, id_prenda, id_cliente, cliente, codigo_barras, id_usuario, id_sucursal, fecha, hora) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2337 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: tikeo_cliente_id_tikeo_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tikeo_cliente_id_tikeo_cliente_seq', 14, true);
+
+
+--
+-- TOC entry 2338 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: tikeo_id_tikeo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tikeo_id_tikeo_seq', 156, true);
+
+
+--
+-- TOC entry 2272 (class 0 OID 16859)
+-- Dependencies: 217
+-- Data for Name: tipo_prenda; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.tipo_prenda (id_tipo_prenda, tipo_prenda) FROM stdin;
+1	SIMPLE                                                                                                                                                                                                  
+2	X METRO                                                                                                                                                                                                 
+3	KILO                                                                                                                                                                                                    
+\.
+
+
+--
+-- TOC entry 2339 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: tipo_prenda_id_tipo_prenda_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tipo_prenda_id_tipo_prenda_seq', 2, true);
+
+
+--
+-- TOC entry 2274 (class 0 OID 16864)
+-- Dependencies: 219
+-- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.usuario (id_usuario, email, password, nombres, apellidos, ci, numero, cargo, sucursal) FROM stdin;
+1	victor@superclean.com                                                                                                                                                                                                                                                                                       	superclean                                                                                                                                                                                              	victor daniel                                                                                                                                                                                           	gonzales montaño                                                                                                                                                                                        	7865412	77521478	1	1
+3	planchado@superclean.com                                                                                                                                                                                                                                                                                    	planchado                                                                                                                                                                                               	ramiro sergio                                                                                                                                                                                           	herbas medrano                                                                                                                                                                                          	3423423423	60475565	3	1
+2	recepcionista@superclean.com                                                                                                                                                                                                                                                                                	recepcion                                                                                                                                                                                               	ana teresa                                                                                                                                                                                              	teran gonzales                                                                                                                                                                                          	78963354	60477899	2	1
+\.
+
+
+--
+-- TOC entry 2340 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: usuario_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.usuario_id_usuario_seq', 3, true);
+
+
+--
+-- TOC entry 2068 (class 2606 OID 16897)
+-- Name: acomodado_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.acomodado
+    ADD CONSTRAINT acomodado_pkey PRIMARY KEY (id_acomodado);
+
+
+--
+-- TOC entry 2070 (class 2606 OID 16899)
+-- Name: area_acomodado_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.area_acomodado
+    ADD CONSTRAINT area_acomodado_pkey PRIMARY KEY (id_area_acomodado);
+
+
+--
+-- TOC entry 2072 (class 2606 OID 16901)
+-- Name: cargo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.cargo
+    ADD CONSTRAINT cargo_pkey PRIMARY KEY (id_cargo);
+
+
+--
+-- TOC entry 2074 (class 2606 OID 16903)
+-- Name: carrito_acomodado_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.carrito_acomodado
+    ADD CONSTRAINT carrito_acomodado_pkey PRIMARY KEY (id_carrito_acomodado);
+
+
+--
+-- TOC entry 2076 (class 2606 OID 16905)
+-- Name: carrito_lavado_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.carrito_lavado
+    ADD CONSTRAINT carrito_lavado_pkey PRIMARY KEY (id_carrito_lavado);
+
+
+--
+-- TOC entry 2078 (class 2606 OID 16907)
+-- Name: carrito_orden_trabajo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.carrito_orden_trabajo
+    ADD CONSTRAINT carrito_orden_trabajo_pkey PRIMARY KEY (id_carrito_orden_trabajo);
+
+
+--
+-- TOC entry 2080 (class 2606 OID 16909)
+-- Name: carrito_tikeo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.carrito_tikeo
+    ADD CONSTRAINT carrito_tikeo_pkey PRIMARY KEY (id_carrito_tikeo);
+
+
+--
+-- TOC entry 2082 (class 2606 OID 16911)
+-- Name: chofer_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.chofer
+    ADD CONSTRAINT chofer_pkey PRIMARY KEY (id_chofer);
+
+
+--
+-- TOC entry 2084 (class 2606 OID 16913)
+-- Name: cierre_caja_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.cierre_caja
+    ADD CONSTRAINT cierre_caja_pkey PRIMARY KEY (id_cierre_caja);
+
+
+--
+-- TOC entry 2086 (class 2606 OID 16915)
+-- Name: cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.cliente
+    ADD CONSTRAINT cliente_pkey PRIMARY KEY (id_cliente);
+
+
+--
+-- TOC entry 2088 (class 2606 OID 16917)
+-- Name: cobro_lavado_especial_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.cobro_lavado_especial
+    ADD CONSTRAINT cobro_lavado_especial_pkey PRIMARY KEY (id_cobro_lavado_especial);
+
+
+--
+-- TOC entry 2118 (class 2606 OID 24593)
+-- Name: color_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.color
+    ADD CONSTRAINT color_pkey PRIMARY KEY (id_color);
+
+
+--
+-- TOC entry 2090 (class 2606 OID 16919)
+-- Name: entrega_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.entrega
+    ADD CONSTRAINT entrega_pkey PRIMARY KEY (id_entrega);
+
+
+--
+-- TOC entry 2116 (class 2606 OID 24583)
+-- Name: forma_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.forma
+    ADD CONSTRAINT forma_pkey PRIMARY KEY (id_forma);
+
+
+--
+-- TOC entry 2094 (class 2606 OID 16921)
+-- Name: lavado_especial_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.lavado_especial
+    ADD CONSTRAINT lavado_especial_pkey PRIMARY KEY (id_lavado_especial);
+
+
+--
+-- TOC entry 2092 (class 2606 OID 16923)
+-- Name: lavado_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.lavado
+    ADD CONSTRAINT lavado_pkey PRIMARY KEY (id_lavado);
+
+
+--
+-- TOC entry 2096 (class 2606 OID 16925)
+-- Name: moneda_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.moneda
+    ADD CONSTRAINT moneda_pkey PRIMARY KEY (id_moneda);
+
+
+--
+-- TOC entry 2098 (class 2606 OID 16927)
+-- Name: orden_domicilio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.orden_domicilio
+    ADD CONSTRAINT orden_domicilio_pkey PRIMARY KEY (id_orden_domicilio);
+
+
+--
+-- TOC entry 2100 (class 2606 OID 16929)
+-- Name: orden_trabajo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.orden_trabajo
+    ADD CONSTRAINT orden_trabajo_pkey PRIMARY KEY (id_orden_trabajo);
+
+
+--
+-- TOC entry 2102 (class 2606 OID 16931)
+-- Name: precio_kilo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.precio_kilo
+    ADD CONSTRAINT precio_kilo_pkey PRIMARY KEY (id_precio_kilo);
+
+
+--
+-- TOC entry 2104 (class 2606 OID 16933)
+-- Name: prenda_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.prenda
+    ADD CONSTRAINT prenda_pkey PRIMARY KEY (id_prenda);
+
+
+--
+-- TOC entry 2106 (class 2606 OID 16935)
+-- Name: sucursal_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.sucursal
+    ADD CONSTRAINT sucursal_pkey PRIMARY KEY (id_sucursal);
+
+
+--
+-- TOC entry 2110 (class 2606 OID 16937)
+-- Name: tikeo_cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.tikeo_cliente
+    ADD CONSTRAINT tikeo_cliente_pkey PRIMARY KEY (id_tikeo_cliente);
+
+
+--
+-- TOC entry 2108 (class 2606 OID 16939)
+-- Name: tikeo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.tikeo
+    ADD CONSTRAINT tikeo_pkey PRIMARY KEY (id_tikeo);
+
+
+--
+-- TOC entry 2112 (class 2606 OID 16941)
+-- Name: tipo_prenda_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.tipo_prenda
+    ADD CONSTRAINT tipo_prenda_pkey PRIMARY KEY (id_tipo_prenda);
+
+
+--
+-- TOC entry 2114 (class 2606 OID 16943)
+-- Name: usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY public.usuario
+    ADD CONSTRAINT usuario_pkey PRIMARY KEY (id_usuario);
+
+
+--
+-- TOC entry 2287 (class 0 OID 0)
+-- Dependencies: 7
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2021-02-09 11:44:34
+
+--
+-- PostgreSQL database dump complete
+--
+
